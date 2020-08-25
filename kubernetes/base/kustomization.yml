@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- deployment.yml
+- service.yml
+
+configMapGenerator:
+- name: cheung0825-config
+  literals:
+    - DATABASE_ENGINE=mysql
+    - DATABASE_HOST=database.cheung0825
+    - DATABASE_PORT=3306
+    - DATABASE_NAME=cheung0825
+    - SERVICE_PORT=80
+
+commonLabels:
+  app: cheung0825

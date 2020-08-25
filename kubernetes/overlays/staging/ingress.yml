@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cheung0825
+  annotations:
+    # nginx ingress
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    # cert-manager
+    ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: clusterissuer-letsencrypt-production
+    # external-dns
+    external-dns.alpha.kubernetes.io/hostname: api0825-stage.get0.dev
+    # CORS
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "https://app0825-stage.get0.dev/"
+
+spec:
+  rules:
+  - host: api0825-stage.get0.dev
+    http:
+      paths:
+        - path: /(.*)
+          backend:
+            serviceName: cheung0825
+            servicePort: http
+  tls:
+  - hosts:
+    - api0825-stage.get0.dev
+    secretName: cheung0825-tls-secret
