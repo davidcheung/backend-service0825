@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: hello
+  name: cheung0825
 spec:
   suspend: false
   schedule: "*/1 * * * *"
@@ -10,7 +10,7 @@ spec:
       template:
         spec:
           containers:
-          - name: hello
+          - name: cronjob
             image: busybox
             args:
             - /bin/sh
