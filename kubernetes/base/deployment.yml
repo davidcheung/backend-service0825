@@ -75,6 +75,7 @@ kind: CronJob
 metadata:
   name: hello
 spec:
+  suspend: true
   schedule: "*/1 * * * *"
   jobTemplate:
     spec:
